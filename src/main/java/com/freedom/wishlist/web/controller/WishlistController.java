@@ -1,5 +1,6 @@
 package com.freedom.wishlist.web.controller;
 
+import com.freedom.wishlist.infrastructure.dto.ContainsDto;
 import com.freedom.wishlist.infrastructure.dto.ProductsDto;
 import com.freedom.wishlist.infrastructure.dto.WishlistDto;
 import com.freedom.wishlist.infrastructure.services.WishlistService;
@@ -32,5 +33,11 @@ public class WishlistController {
     @ResponseStatus(HttpStatus.OK)
     public ProductsDto getProducts(@PathVariable("id") String userId){
         return this.wishlistService.getProducts(userId);
+    }
+
+    @GetMapping("/user/{id}/products/{productId}")
+    @ResponseStatus(HttpStatus.OK)
+    public ContainsDto checkIfContainsProduct(@PathVariable("id") String userId, @PathVariable("productId") String productId){
+        return this.wishlistService.containsProduct(userId,productId);
     }
 }

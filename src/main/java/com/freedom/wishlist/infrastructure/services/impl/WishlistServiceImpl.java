@@ -1,6 +1,7 @@
 package com.freedom.wishlist.infrastructure.services.impl;
 
 import com.freedom.wishlist.core.entities.Wishlist;
+import com.freedom.wishlist.infrastructure.dto.ContainsDto;
 import com.freedom.wishlist.infrastructure.dto.ProductDto;
 import com.freedom.wishlist.infrastructure.dto.ProductsDto;
 import com.freedom.wishlist.infrastructure.dto.WishlistDto;
@@ -73,5 +74,19 @@ public class WishlistServiceImpl implements WishlistService {
         return ProductsDto.builder()
                 .products(products)
                 .build();
+    }
+
+    @Override
+    public ContainsDto containsProduct(String userId, String productId) {
+        List<String> newestProductList = this.getProductsList(userId);
+
+        if(newestProductList.isEmpty()){
+            throw new WishlistNotFoundException("lista de desejos do usuario de id " +userId + " nao encontrada");
+        }
+
+        if(newestProductList.contains(productId)){
+            return ContainsDto.builder().status(true).build();
+        }
+        return ContainsDto.builder().status(false).build();
     }
 }
