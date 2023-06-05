@@ -14,7 +14,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
@@ -24,7 +23,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
-public class SaveProductToWishlistControllerTest {
+public class RemoveProductFromWishlistControllerTest {
+
     @Autowired
     MockMvc mockMvc;
     @Autowired
@@ -32,12 +32,17 @@ public class SaveProductToWishlistControllerTest {
     @Autowired
     ObjectMapper objectMapper;
 
+    @BeforeEach
+    private void beforeEach(){
+        this.wishlistRepository.save(new Wishlist("1","userTestId","1"));
+    }
+
     @Test
-    public void should_save_product_to_wishlist() throws Exception {
+    public void should_remove_product_from_wishlist() throws Exception {
 
-        WishlistDto wishlist = new WishlistDto("1234","2");
+        WishlistDto wishlist = new WishlistDto("userTestId", "1");
 
-        mockMvc.perform(post("/api/v1/wishlist/add-product")
+        mockMvc.perform(post("/api/v1/wishlist/remove-product")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(wishlist)))
                 .andExpect(status().isNoContent());
@@ -45,7 +50,7 @@ public class SaveProductToWishlistControllerTest {
 
     @AfterEach
     private void afterEach(){
-        this.wishlistRepository.deleteByUserId("1234");
+        this.wishlistRepository.deleteByUserId("userTestId");
     }
 
 }
