@@ -43,7 +43,7 @@ public class GetAllWishlistProductsControllerTest {
 
         WishlistDto wishlist = new WishlistDto("1","1");
 
-        mockMvc.perform(get("/api/v1/wishlist/user/{id}", 1)
+        mockMvc.perform(get("/api/v1/wishlist/user/{id}/products", 1)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
