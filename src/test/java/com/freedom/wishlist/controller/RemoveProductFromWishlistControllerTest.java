@@ -16,8 +16,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
@@ -42,7 +41,7 @@ public class RemoveProductFromWishlistControllerTest {
 
         WishlistDto wishlist = new WishlistDto("userTestId", "1");
 
-        mockMvc.perform(post("/api/v1/wishlist/remove-product")
+        mockMvc.perform(delete("/api/v1/wishlist/remove-product")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(wishlist)))
                 .andExpect(status().isNoContent());
