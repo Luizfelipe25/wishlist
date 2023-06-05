@@ -10,7 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.util.List;
 
 @SpringBootApplication
-public class WishlistApplication implements CommandLineRunner {
+public class WishlistApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(WishlistApplication.class, args);
