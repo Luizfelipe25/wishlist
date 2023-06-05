@@ -1,6 +1,7 @@
 package com.freedom.wishlist.web.controller;
 
 import com.freedom.wishlist.infrastructure.dto.ContainsDto;
+import com.freedom.wishlist.infrastructure.dto.ProductDto;
 import com.freedom.wishlist.infrastructure.dto.ProductsDto;
 import com.freedom.wishlist.infrastructure.dto.WishlistDto;
 import com.freedom.wishlist.infrastructure.services.WishlistService;
@@ -18,9 +19,9 @@ public class WishlistController {
     private final WishlistService wishlistService;
 
     @PostMapping("/add-product")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void addProduct(@RequestBody WishlistDto wishlist){
-        this.wishlistService.addProduct(wishlist);
+    @ResponseStatus(HttpStatus.OK)
+    public ProductDto addProduct(@RequestBody WishlistDto wishlist){
+       return this.wishlistService.addProduct(wishlist);
     }
 
     @DeleteMapping("/remove-product")

@@ -34,7 +34,7 @@ public class WishlistServiceImpl implements WishlistService {
     }
 
     @Override
-    public void addProduct(WishlistDto wishlist) {
+    public ProductDto addProduct(WishlistDto wishlist) {
         List<String> newestProductList = this.getProductsList(wishlist.getUserId());
         boolean alreadyContains = newestProductList.contains(wishlist.getProductId());
 
@@ -43,6 +43,7 @@ public class WishlistServiceImpl implements WishlistService {
                     .productId(wishlist.getProductId())
                     .userId(wishlist.getUserId())
                     .build());
+            return ProductDto.builder().id(wishlist.getProductId()).build();
         } else {
             throw new ProductNotSavedException("A lista ja possui 20 produtos ou o produto ja foi adicionado");
         }

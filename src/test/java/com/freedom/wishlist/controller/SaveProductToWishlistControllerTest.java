@@ -40,7 +40,7 @@ public class SaveProductToWishlistControllerTest {
         mockMvc.perform(post("/api/v1/wishlist/add-product")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(wishlist)))
-                .andExpect(status().isNoContent());
+                .andExpect(status().isOk());
     }
 
     @AfterEach
