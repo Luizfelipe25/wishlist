@@ -37,9 +37,6 @@ public class SaveProductToWishlistServiceTest {
     @Mock
     private WishlistRepository wishlistRepository;
 
-    private List<Wishlist> wishlist;
-
-
     @Test
     void should_save_product_to_wishlist() {
 
