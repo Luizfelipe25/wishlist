@@ -32,17 +32,17 @@ public class SaveProductToWishlistControllerTest {
     @Autowired
     ObjectMapper objectMapper;
 
-    @BeforeEach
-    private void beforeEach(){
-        this.wishlistRepository.save(new Wishlist("99","1234","1"));
-    }
+//    @BeforeEach
+//    private void beforeEach(){
+//        this.wishlistRepository.save(new Wishlist("99","1234","1"));
+//    }
 
     @Test
     public void should_save_product_to_wishlist() throws Exception {
 
-        WishlistDto wishlist = new WishlistDto("1234","1");
+        WishlistDto wishlist = new WishlistDto("1234","2");
 
-        mockMvc.perform(post("/wishlist/add-product")
+        mockMvc.perform(post("/api/v1/wishlist/add-product")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(wishlist)))
                 .andExpect(status().isNoContent());
@@ -50,7 +50,7 @@ public class SaveProductToWishlistControllerTest {
 
     @AfterEach
     private void afterEach(){
-        this.wishlistRepository.delete(new Wishlist("99","1234","1"));
+        this.wishlistRepository.deleteByUserId("1234");
     }
 
 }
