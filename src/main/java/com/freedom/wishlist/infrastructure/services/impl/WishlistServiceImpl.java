@@ -53,7 +53,8 @@ public class WishlistServiceImpl implements WishlistService {
         List<String> newestProductList = this.getProductsList(wishlist.getUserId());
 
         if(newestProductList.isEmpty()){
-            throw new WishlistNotFoundException("lista de desejos do usuario de id " + wishlist.getUserId() + " nao encontrada");
+            throw new WishlistNotFoundException("O usuario de Id: " + wishlist.getUserId()
+                    + " ainda nao possui produtos na lista de desejos");
         }
         if(newestProductList.contains(wishlist.getProductId())) {
             this.wishlistRepository.deleteByUserIdAndProductId(wishlist.getUserId(), wishlist.getProductId());
@@ -65,8 +66,14 @@ public class WishlistServiceImpl implements WishlistService {
     @Override
     public ProductsDto getProducts(String userId) {
         List<ProductDto> products = new ArrayList<>();
+        List<String> newestProducts = this.getProductsList(userId);
 
-        this.getProductsList(userId).forEach(productId -> products.add(
+        if(newestProducts.isEmpty()){
+            throw new WishlistNotFoundException("O usuario de Id: " + userId
+                    + " ainda nao possui produtos na lista de desejos");
+        }
+
+        newestProducts.forEach(productId -> products.add(
                 ProductDto.builder()
                         .id(productId)
                         .build()
@@ -79,10 +86,6 @@ public class WishlistServiceImpl implements WishlistService {
     @Override
     public ContainsDto containsProduct(String userId, String productId) {
         List<String> newestProductList = this.getProductsList(userId);
-
-        if(newestProductList.isEmpty()){
-            throw new WishlistNotFoundException("lista de desejos do usuario de id " +userId + " nao encontrada");
-        }
 
         if(newestProductList.contains(productId)){
             return ContainsDto.builder().status(true).build();
