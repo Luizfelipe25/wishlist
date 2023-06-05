@@ -5,4 +5,6 @@ import com.freedom.wishlist.infrastructure.dto.WishlistDto;
 
 public interface WishlistService {
     void addProduct(WishlistDto wishlist);
+
+    void removeProduct(WishlistDto wishlist);
 }

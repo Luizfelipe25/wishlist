@@ -21,4 +21,10 @@ public class WishlistController {
         this.wishlistService.addProduct(wishlist);
     }
 
+    @DeleteMapping("/remove-product")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void removeProduct(@RequestBody WishlistDto wishlist){
+        this.wishlistService.removeProduct( wishlist);
+    }
+
 }

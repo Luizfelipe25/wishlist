@@ -2,6 +2,7 @@ package com.freedom.wishlist.infrastructure.services.impl;
 
 import com.freedom.wishlist.core.entities.Wishlist;
 import com.freedom.wishlist.infrastructure.dto.WishlistDto;
+import com.freedom.wishlist.infrastructure.exceptions.ProductNotRemovedException;
 import com.freedom.wishlist.infrastructure.exceptions.ProductNotSavedException;
 import com.freedom.wishlist.infrastructure.exceptions.WishlistNotFoundException;
 import com.freedom.wishlist.infrastructure.repository.WishlistRepository;
@@ -21,8 +22,7 @@ public class WishlistServiceImpl implements WishlistService {
     private final WishlistRepository wishlistRepository;
 
     private List<String> getProductsList(String userId) {
-       List<Wishlist> wishlist= wishlistRepository.findAllByUserId(userId)
-               .orElseThrow(() -> new WishlistNotFoundException("lista de desejos do usuario" + userId + " nao encontrada"));
+       List<Wishlist> wishlist= wishlistRepository.findAllByUserId(userId);
 
        List<String> products = new ArrayList<>();
        wishlist.forEach(list -> products.add(list.getProductId()));
@@ -41,8 +41,21 @@ public class WishlistServiceImpl implements WishlistService {
                     .userId(wishlist.getUserId())
                     .build());
         } else {
-            throw new ProductNotSavedException(HttpStatus.CONFLICT,
-                    "A lista ja possui 20 produtos ou o produto ja foi adicionado");
+            throw new ProductNotSavedException("A lista ja possui 20 produtos ou o produto ja foi adicionado");
+        }
+    }
+
+    @Override
+    public void removeProduct(WishlistDto wishlist) {
+        List<String> newestProductList = this.getProductsList(wishlist.getUserId());
+
+        if(newestProductList.isEmpty()){
+            throw new WishlistNotFoundException("lista de desejos do usuario de id " + wishlist.getUserId() + " nao encontrada");
+        }
+        if(newestProductList.contains(wishlist.getProductId())) {
+            this.wishlistRepository.deleteByUserIdAndProductId(wishlist.getUserId(), wishlist.getProductId());
+        } else {
+            throw new ProductNotRemovedException("A lista de desejos nao possui este produto");
         }
     }
 }
