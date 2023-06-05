@@ -22,6 +22,6 @@ public class Wishlist implements Serializable {
 
     private String userId;
 
-    private List<String> products;
+    private String productId;
 
 }
