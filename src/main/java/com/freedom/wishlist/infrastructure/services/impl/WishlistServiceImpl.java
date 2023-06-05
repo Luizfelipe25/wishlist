@@ -1,6 +1,9 @@
 package com.freedom.wishlist.infrastructure.services.impl;
 
 import com.freedom.wishlist.core.entities.Wishlist;
+import com.freedom.wishlist.infrastructure.dto.WishlistDto;
+import com.freedom.wishlist.infrastructure.exceptions.ProductNotSavedException;
+import com.freedom.wishlist.infrastructure.exceptions.WishlistNotFoundException;
 import com.freedom.wishlist.infrastructure.repository.WishlistRepository;
 import com.freedom.wishlist.infrastructure.services.WishlistService;
 import lombok.AllArgsConstructor;
@@ -17,4 +20,29 @@ public class WishlistServiceImpl implements WishlistService {
 
     private final WishlistRepository wishlistRepository;
 
+    private List<String> getProductsList(String userId) {
+       List<Wishlist> wishlist= wishlistRepository.findAllByUserId(userId)
+               .orElseThrow(() -> new WishlistNotFoundException("lista de desejos do usuario" + userId + " nao encontrada"));
+
+       List<String> products = new ArrayList<>();
+       wishlist.forEach(list -> products.add(list.getProductId()));
+       return products;
+
+    }
+
+    @Override
+    public void addProduct(WishlistDto wishlist) {
+        List<String> newestProductList = this.getProductsList(wishlist.getUserId());
+        boolean alreadyContains = newestProductList.contains(wishlist.getProductId());
+
+        if (newestProductList.size() < 20 && !alreadyContains) {
+            this.wishlistRepository.save(Wishlist.builder()
+                    .productId(wishlist.getProductId())
+                    .userId(wishlist.getUserId())
+                    .build());
+        } else {
+            throw new ProductNotSavedException(HttpStatus.CONFLICT,
+                    "A lista ja possui 20 produtos ou o produto ja foi adicionado");
+        }
+    }
 }
