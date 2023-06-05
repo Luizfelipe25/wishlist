@@ -1,5 +1,6 @@
 package com.freedom.wishlist.web.controller;
 
+import com.freedom.wishlist.infrastructure.dto.ProductsDto;
 import com.freedom.wishlist.infrastructure.dto.WishlistDto;
 import com.freedom.wishlist.infrastructure.services.WishlistService;
 import lombok.RequiredArgsConstructor;
@@ -27,4 +28,9 @@ public class WishlistController {
         this.wishlistService.removeProduct( wishlist);
     }
 
+    @GetMapping("/user/{id}/products")
+    @ResponseStatus(HttpStatus.OK)
+    public ProductsDto getProducts(@PathVariable("id") String userId){
+        return this.wishlistService.getProducts(userId);
+    }
 }

@@ -1,6 +1,8 @@
 package com.freedom.wishlist.infrastructure.services.impl;
 
 import com.freedom.wishlist.core.entities.Wishlist;
+import com.freedom.wishlist.infrastructure.dto.ProductDto;
+import com.freedom.wishlist.infrastructure.dto.ProductsDto;
 import com.freedom.wishlist.infrastructure.dto.WishlistDto;
 import com.freedom.wishlist.infrastructure.exceptions.ProductNotRemovedException;
 import com.freedom.wishlist.infrastructure.exceptions.ProductNotSavedException;
@@ -57,5 +59,19 @@ public class WishlistServiceImpl implements WishlistService {
         } else {
             throw new ProductNotRemovedException("A lista de desejos nao possui este produto");
         }
+    }
+
+    @Override
+    public ProductsDto getProducts(String userId) {
+        List<ProductDto> products = new ArrayList<>();
+
+        this.getProductsList(userId).forEach(productId -> products.add(
+                ProductDto.builder()
+                        .id(productId)
+                        .build()
+        ));
+        return ProductsDto.builder()
+                .products(products)
+                .build();
     }
 }
