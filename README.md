@@ -15,7 +15,7 @@ Esta aplicação foi desenvolvida baseada nos padrões de  **Clean Archtecture**
 
 ![as](https://github.com/Luizfelipe25/cardAPI/assets/69943563/9752d257-00a1-4573-a5a6-266d98496e4b)
 
-Tambem foi utilizada a técnica **BDD** para alinhar regras de negócio
+Tambem foi utilizada a técnica **BDD** para alinhar regras englobando **TDD** no desenvolvimento
 > **Contexto**: 
 
 > &nbsp;&nbsp;  **Dado** que o usuário esteja logado no sistema
