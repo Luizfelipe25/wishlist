@@ -2,7 +2,7 @@
 
 #### API de uma Wishlist feita em Java 17 com Spring Boot + MongoDB.
 
-# Sumario <!-- omit in toc -->
+# Sumário <!-- omit in toc -->
 - [Introdução](#introdução)
 - [Instalação](#instalação)
 - [Execução](#execução)
