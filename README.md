@@ -58,7 +58,7 @@ Clone o repositorio:
 ## A aplicação pode ser inicializada a partir de um compose
 - [Docker](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-20-04)
 
-## Localmente para inicializa-la é necessario:
+## Ou localmente, para inicializa-la é necessario:
 - [JDK17](https://openjdk.java.net/install/)
 - [Maven](https://maven.apache.org/)
 - [Spring Boot](https://spring.io/projects/spring-boot)
