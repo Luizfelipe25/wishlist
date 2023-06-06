@@ -56,10 +56,10 @@ Clone o repositório:
 
     git clone https://github.com/Luizfelipe25/wishlist.git
     
-## A aplicação pode ser inicializada a partir de um compose
+## A aplicação pode ser inicializada a partir de um compose:
 - [Docker](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-20-04)
 
-## Ou localmente, para inicializa-la é necessário:
+## Ou localmente:
 - [JDK17](https://openjdk.java.net/install/)
 - [Maven](https://maven.apache.org/)
 - [Spring Boot](https://spring.io/projects/spring-boot)
