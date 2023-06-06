@@ -1,0 +1,49 @@
+version: "3.9"
+
+networks:
+  backend:
+
+volumes:
+  dbdata:
+
+services:
+
+  mongo:
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    ports:
+      - "27017:27017"
+    volumes:
+      - dbdata:/data/db
+    networks:
+      - backend
+
+  wishlist-service:
+    build:
+      context: .
+    command: [ "java", "org.springframework.boot.loader.JarLauncher", "-XX:MaxRAMPercentage=80", "-XX:+UseG1GC", "--port 8080" ]
+    container_name: wishlist-service
+    depends_on:
+      -  mongo
+    networks:
+      - backend
+    ports:
+      - "8080:8080"
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8080/actuator/health" ]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 50s
+    environment:
+      - SPRING_APPLICATION_NAME=wishlist-service
+      - SERVER_PORT=8080
+      - JAVA_OPTS="-XX:+UseParallelGC
+        -Xms6144m
+        -Xmx6144m
+        --add-opens java.base/jdk.internal.misc=ALL-UNNAMED
+        --add-opens java.base/java.nio=ALL-UNNAMED
+        --add-exports java.base/jdk.internal.misc=ALL-UNNAMED
+        -Dio.netty.tryReflectionSetAccessible=true"
