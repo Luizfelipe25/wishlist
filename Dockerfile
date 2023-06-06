@@ -18,4 +18,4 @@ COPY --from=runner snapshot-dependencies/ ./
 COPY --from=runner spring-boot-loader/ ./
 COPY --from=runner application/ ./
 
-EXPOSE 8082
+EXPOSE 8080
