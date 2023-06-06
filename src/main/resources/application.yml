@@ -3,9 +3,10 @@ spring:
     name: wishlist-service
   data:
     mongodb:
-      uri: mongodb://127.0.0.1:27017/wishlist
+#      uri: mongodb://localhost:27017/wishlist
+      uri: mongodb://mongo:27017/wishlist
 server:
-  port: 8082
+  port: 8080
 management:
   security:
     enabled: false
