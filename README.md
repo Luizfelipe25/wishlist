@@ -3,19 +3,20 @@
 #### API de uma Wishlist feita em Java 17 com Spring Boot + MongoDB.
 
 # Sumario <!-- omit in toc -->
-- [Introducao](#introducao)
+- [Introdução](#introdução)
 - [Instalação](#instalação)
-- [Execucao](#execucao)
-- [Documentacao](#documentacao)
+- [Execução](#execução)
+- [Documentação](#documentação)
 
 ---
 
-# Introducao
-Esta aplicacao foi desenvolvida baseada nos padroes de  **Clean Archtecture** interpretados a partir da seguinte imagem:
+# Introdução
+Esta aplicação foi desenvolvida baseada nos padroes de  **Clean Archtecture** interpretados a partir da seguinte imagem:
 
 ![as](https://github.com/Luizfelipe25/cardAPI/assets/69943563/9752d257-00a1-4573-a5a6-266d98496e4b)
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fonte https://learn.microsoft.com/pt-br/dotnet/architecture/modern-web-apps-azure/common-web-application-architectures
 
-Tambem foi utilizada a tecnica **BDD** para alinhar regras de negocio
+Tambem foi utilizada a técnica **BDD** para alinhar regras de negócio
 > **Contexto**: 
 
 > &nbsp;&nbsp;  **Dado** que o usuário esteja logado no sistema
@@ -51,14 +52,14 @@ Tambem foi utilizada a tecnica **BDD** para alinhar regras de negocio
 ---
 
 # Instalação
-Clone o repositorio:
+Clone o repositório:
 
     git clone https://github.com/Luizfelipe25/wishlist.git
     
 ## A aplicação pode ser inicializada a partir de um compose
 - [Docker](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-20-04)
 
-## Ou localmente, para inicializa-la é necessario:
+## Ou localmente, para inicializa-la é necessário:
 - [JDK17](https://openjdk.java.net/install/)
 - [Maven](https://maven.apache.org/)
 - [Spring Boot](https://spring.io/projects/spring-boot)
@@ -67,7 +68,7 @@ Clone o repositorio:
 
 ---
 
-# Execucao
+# Execução
 
 Para rodar via compose, no terminal, navegue até a pasta raiz do projeto e execute:
 
@@ -75,15 +76,15 @@ Para rodar via compose, no terminal, navegue até a pasta raiz do projeto e exec
    
 
 Para rodar localmente:
-* Apos instalada as ferramentas, navegue até `src/main/java/com.freedom.wishlist`, clique com o botão direito em `WishlistApplication` e selecione RUN.
+* Após instalada as ferramentas, navegue até `src/main/java/com.freedom.wishlist`, clique com o botão direito em `WishlistApplication` e selecione RUN.
 
-* Estara exposta na porta 8082, mas fique a vontade para modificar se necessario, basta alterar o `application.yml` dentro de `resources`, o Mongo tambem esta na porta padrao `:27017`, altere se necessario.
+* A api Estará exposta na porta 8082, mas fique a vontade para modificar se necessário, basta alterar o `application.yml` dentro de `resources`, o Mongo tambem esta na porta padrão `:27017`, altere se necessário.
 
-* Para testar a aplicação basta utilizar as urls no Postman. Para rodar os testes unitarios e de integração, no IntelliJ basta clicar com o botao direito na pasta raiz e selecionar  `Run 'all tests'`.
+* Para testar a aplicação basta utilizar as urls no Postman. Para rodar os testes unitários e de integração, no IntelliJ basta clicar com o botãoo direito na pasta raiz e selecionar  `Run 'all tests'`.
 ---
 
-# Documentacao
-Apos a aplicacao inicializada, e possivel obter a documentacao no link:
+# Documentação
+Com a aplicacão inicializada, é possivel obter a documentaão no link:
 
 ```
 http://localhost:8082/swagger-ui/index.html
