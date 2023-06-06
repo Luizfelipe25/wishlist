@@ -49,6 +49,8 @@ Também foi utilizada a técnica **BDD** para alinhar regras englobando **TDD** 
 
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Então** o serviço deve verificar se o produto foi adicionado a lista de desejos
 
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**E** retornar True caso tenha sido e False caso não.
+
 ---
 
 # Instalação
