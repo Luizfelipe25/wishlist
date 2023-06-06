@@ -11,7 +11,7 @@
 ---
 
 # Introdução
-Esta aplicação foi desenvolvida baseada nos padroes de  **Clean Archtecture** interpretados a partir da seguinte imagem:
+Esta aplicação foi desenvolvida baseada nos padrões de  **Clean Archtecture** interpretados a partir da seguinte imagem:
 
 ![as](https://github.com/Luizfelipe25/cardAPI/assets/69943563/9752d257-00a1-4573-a5a6-266d98496e4b)
 ##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fonte: https://learn.microsoft.com/pt-br/dotnet/architecture/modern-web-apps-azure/common-web-application-architectures
@@ -84,7 +84,7 @@ Para rodar localmente:
 ---
 
 # Documentação
-Com a aplicacão inicializada, é possivel obter a documentaão no link:
+Com a aplicacão inicializada, é possivel obter a documentação no link:
 
 ```
 http://localhost:8082/swagger-ui/index.html
